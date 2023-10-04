@@ -79,8 +79,33 @@ OtherSection:NewButton("Buy Comebacks", "yuhh", function()
     local args = {
         [1] = "Comebacks"
     }
-    
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Buy"):FireServer(unpack(args))    
+end)
+
+OtherSection:NewButton("Caculate cost for buying the skins u dont have", "name expaine", function()
+    local test = {}
+
+    for i,v in pairs(game:GetService("ReplicatedStorage").Products.Shop.ItemsAvailable.Skins:GetChildren()) do
+        for _,v2 in pairs(game.Players.LocalPlayer.DataStore.Skins:GetChildren()) do
+            if v.Name ~= v2.Name then 
+                table.insert(test, v.price.Value)
+            end
+        end
+    end
+
+    local funfun2 = table.concat(test, ", ") -- replace "TABLE" with the table
+    funfun2 = string.gsub(funfun2, ","," ")
+    print(funfun2)
+
+    local number = 0
+
+    table.foreach(test, function(i, v)
+        number = number + v
+    end)
+
+    setclipboard(tostring(number))
+
+    print(number)
 end)
 
 
