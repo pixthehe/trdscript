@@ -10,8 +10,11 @@ local charTable = {}
 
 
 for i,v in pairs(game:GetService("ReplicatedStorage").Products.Shop.ItemsAvailable.Skins:GetChildren()) do
-
-    table.insert(charTable, v.Name)
+    for _,v2 in pairs(game.Players.LocalPlayer.DataStore.Skins:GetChildren()) do
+        if v.Name ~= v2.Name then 
+            table.insert(charTable, v.Name)
+        end
+    end
 end
 
 local selected = ""
@@ -63,7 +66,7 @@ end)
 local OtherTab = Window:NewTab("Other Tab")
 local OtherSection = OtherTab:NewSection("Others")
 
-OtherSection:NewTextBox("Buy Character (CAPITILIZATION DOES MATTER)", "info", function(txt)
+OtherSection:NewTextBox("Buy Character", "info", function(txt)
     local args = {
         [1] = "Character",
         [2] = txt
