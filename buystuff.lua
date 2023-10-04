@@ -10,11 +10,7 @@ local charTable = {}
 
 
 for i,v in pairs(game:GetService("ReplicatedStorage").Products.Shop.ItemsAvailable.Skins:GetChildren()) do
-    for _,v2 in pairs(game.Players.LocalPlayer.DataStore.Skins:GetChildren()) do
-        if v.Name ~= v2.Name then 
-            table.insert(charTable, v.Name)
-        end
-    end
+    table.insert(charTable, v.Name)
 end
 
 local selected = ""
